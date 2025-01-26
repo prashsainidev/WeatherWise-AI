@@ -1,0 +1,21 @@
+/* PageHeading.css */
+.page-heading {
+    text-align: center;
+    margin-top: 40px;
+    font-family: 'Arial', sans-serif;
+}
+
+.page-heading h1 {
+    font-size: 3rem;
+    color: #3498db;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.page-heading p {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    font-weight: 600;
+    max-width: 600px;
+    margin: 0 auto;
+}

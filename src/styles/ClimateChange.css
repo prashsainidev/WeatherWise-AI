@@ -1,0 +1,145 @@
+/* ClimateChange.css */
+
+/* Container for the entire page */
+.climate-change-container {
+    width: 100%;
+    max-width: 600px; /* Limit the maximum width */
+    margin: 20px auto;
+    padding: 10px 15px;
+    /* background-color: #f1f1f1; Light background for the page */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Container for the search bar (input + button) */
+.climate-search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #f9f9f9; /* Light background for the search area */
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Style for the input field */
+.climate-input {
+    flex-grow: 1;
+    min-width: 300px; /* Prevent input from being too small */
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Focus state for the input field */
+.climate-input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(0, 128, 0, 0.5);
+}
+
+/* Style for the search button */
+.climate-button {
+    min-width: 120px;
+    margin-left: 10px;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.climate-button:hover {
+    background-color: #45a049;
+}
+
+/* Optional: Adjust climate-status to better center the loader and text */
+.climate-status {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+/* Loader Styles */
+.loader {
+    border: 8px solid #f3f3f3; /* Light gray */
+    border-top: 8px solid #ff6f61; /* Color 1 */
+    border-right: 8px solid #ffcc5c; /* Color 2 */
+    border-bottom: 8px solid #88d8b0; /* Color 3 */
+    border-left: 8px solid #6b5b95; /* Color 4 */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1.5s linear infinite;
+    margin: 0 auto 10px auto; /* Center the spinner and add bottom margin */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Container for climate results */
+.climate-results-container {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Styling for the results heading */
+.climate-subheading {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #444;
+}
+
+/* Table for Climate Results */
+.climate-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.climate-table th, .climate-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.climate-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.climate-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.climate-table tr:hover {
+    background-color: #ddd;
+}
+/* Placeholder container */
+.climate-placeholder {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2rem;
+    color: #e74c3c;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 1rem;
+    font-weight: bold;
+}

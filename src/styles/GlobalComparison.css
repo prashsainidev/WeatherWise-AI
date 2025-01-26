@@ -1,0 +1,360 @@
+/* Global Styles */
+.global-comparison-container {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+}
+
+.city-input-container {
+    position: relative;
+    margin: 0 auto;
+    /* Center horizontally */
+    display: flex;
+    align-items: center;
+    /* Center vertically */
+    justify-content: center;
+    /* Center horizontally within the container */
+    gap: 15px;
+    max-width: 600px;
+    /* Limit the max width for better control */
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    /* Soft shadow for a subtle effect */
+}
+
+/* City input field styling */
+.city-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Input focus state */
+.city-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+
+.suggestions-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    /* Increased font size for readability */
+    color: #333;
+    /* Darker text color for better contrast */
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+/* Hover effect for suggestions */
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+    padding-left: 20px;
+    /* Slight left shift to indicate hover */
+    color: #007bff;
+    /* Change text color to blue on hover */
+}
+
+/* Optional: Style suggestion items in the dropdown */
+.suggestion-item:active {
+    background-color: #e0e0e0;
+    color: #0056b3;
+    font-weight: bold;
+}
+
+/* Buttons Container */
+.button-container {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 0px;
+}
+
+.add-city-btn {
+    background-color: #28a745;
+    font-size: 30px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-city-btn:hover {
+    background-color: #218838;
+}
+
+.swap-cities-btn,
+.reset-cities-btn,
+.compare-weather-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.swap-cities-btn {
+    background-color: #ffc107;
+}
+
+.reset-cities-btn {
+    background-color: #dc3545;
+}
+
+.compare-weather-btn {
+    background-color: #007bff;
+}
+
+/* Hover Effects */
+.swap-cities-btn:hover {
+    background-color: #e0a800;
+}
+
+.reset-cities-btn:hover {
+    background-color: #c82333;
+}
+
+.compare-weather-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Loading Text */
+.loading-text {
+    font-size: 25px;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+}
+
+/* Weather table styling */
+.weather-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow-x: auto;
+    /* Optional for adding scroll effect on smaller screens */
+}
+
+.weather-table th,
+.weather-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 2px solid #ddd;
+    font-size: 14px;
+}
+
+.weather-table th {
+    background-color: palegreen;
+    font-weight: bold;
+}
+
+.weather-table td {
+    font-weight: 600;
+    background-color: #cce5fa;
+}
+
+.weather-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.weather-table tr:hover td {
+    background-color: #f0f0f0;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+
+    /* City input container on smaller screens */
+    .city-input-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+    }
+
+    /* City input field */
+    .city-input {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    /* Button container: Stack the buttons vertically */
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    /* Adjust button size on mobile */
+    .swap-cities-btn,
+    .reset-cities-btn,
+    .compare-weather-btn {
+        width: 100%;
+        padding: 14px;
+    }
+
+    /* Suggestion dropdown container */
+    .suggestions-dropdown {
+        top: 100%;
+        width: 100%;
+        max-width: 100%;
+        left: 0;
+        right: 0;
+        /* margin-top: 5px; Maintain gap from input */
+        max-height: 180px;
+        /* Limit height for smaller screens */
+        overflow-y: auto;
+    }
+
+    /* Suggestion item */
+    .suggestion-item {
+        font-size: 14px;
+        /* Adjust font size for smaller screens */
+        padding: 12px 15px;
+    }
+
+    /* Suggestion item hover and active state */
+    .suggestion-item:hover {
+        background-color: #f0f0f0;
+        padding-left: 20px;
+        color: #007bff;
+    }
+
+    .suggestion-item:active {
+        background-color: #e0e0e0;
+        color: #0056b3;
+    }
+
+    .loading-text {
+        font-size: 25px;
+        font-weight: bold;
+        color: #007bff;
+        text-align: center;
+    }
+
+    .weather-table {
+        /* Make the table horizontally scrollable */
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .weather-table th,
+    .weather-table td {
+        font-size: 12px;
+        /* Adjust font size */
+        padding: 10px 12px;
+        /* Adjust padding */
+    }
+
+    /* Responsive table headers */
+    .weather-table th {
+        font-size: 14px;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+
+    /* Further reduce input padding on very small screens */
+    .city-input {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    /* Further adjust button size for small screens */
+    .swap-cities-btn,
+    .reset-cities-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* Suggestions dropdown */
+    .suggestions-dropdown {
+        max-height: 180px;
+        /* Limit height to avoid taking too much space */
+    }
+
+    /* Suggestion item */
+    .suggestion-item {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+
+    /* Buttons and city input container */
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+    }
+
+    .weather-table th,
+    .weather-table td {
+        font-size: 10px;
+        /* Smaller font size for very small screens */
+        padding: 8px 10px;
+    }
+}

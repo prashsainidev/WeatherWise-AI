@@ -1,0 +1,126 @@
+/* Container for the weather display */
+.weather-display {
+    background-color: #f0f4f8;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 40px auto;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+
+}
+
+/* Heading for the city name */
+.weather-display h2 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+    color: #3498db;
+}
+
+/* Weather info container */
+.weather-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Weather icon styling */
+.weather-info img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0px;
+}
+
+/* Weather details Alignment */
+.weather-details {
+    text-align: left;
+}a
+
+/* Temprature Heading styling */
+.weather-details .temp {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Styling for every weather parameters*/
+.weather-details p {
+    font-size: 1.3rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+/* Error message when no data is available */
+.no-data {
+    color: #e74c3c;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Loader container for centering */
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 200px; /* Adjust height as needed */
+    animation: fadeIn 1s ease-out;
+}
+
+/* Loader animation */
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Loader text styling */
+.loading-text {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #555;
+    font-weight: 500;
+    letter-spacing: 1px;
+    animation: fadeInText 1s ease-out;
+}
+
+/* Fade in text effect */
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Fade-in effect for the loader container */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

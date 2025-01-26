@@ -1,0 +1,26 @@
+/* WeatherRecommendations.css */
+.weather-recommendations {
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    text-align: center;
+}
+
+.weather-recommendations h3 {
+    font-size: 1.8rem;
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+.weather-recommendations ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.weather-recommendations li {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 10px 0;
+}

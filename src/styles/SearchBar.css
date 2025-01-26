@@ -1,0 +1,93 @@
+/* SearchBar.css */
+/* Container for the search bar */
+.search-bar-container {
+    position: relative;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 600px; /*Limit the maximum width*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9; /* Light background for the container */
+    padding: 10px 15px;
+    border-radius: 10px; /* Soft, rounded edges */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Input Field */
+.search-bar-input {
+    flex-grow: 1; /* Responsive width */
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease;
+    z-index: 1; /* Ensure it is above other elements */
+}
+
+/* Input field focus state */
+.search-bar-input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(0, 128, 0, 0.5);
+}
+
+/* Button style */
+.search-button {
+    min-width: 120px; /* Button size responsiveness */
+    margin-left: 10px;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.search-button:hover {
+    background-color: #45a049;
+}
+
+/* Suggestions dropdown */
+.suggestions-list {
+    margin-top: 5px;
+    position:absolute;
+    top: 100%;
+    left: 0;
+    width: 100%; /* Ensure the dropdown is the same width as the input */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background: #fff;
+    border-radius: 5px; /* Rounded corners for the dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /*Prevents padding from affecting the width*/
+}
+
+/* Individual suggestion item */
+.suggestion-item {
+    font-size: 16px;
+    padding: 10px 15px; /* Adjust padding for a better look */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #eee;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none; /* Remove border for the last item */
+}
+
+/* Suggestion item hover effect */
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+    padding-left: 20px; /* Indicate hover with padding shift */
+}
+
+
