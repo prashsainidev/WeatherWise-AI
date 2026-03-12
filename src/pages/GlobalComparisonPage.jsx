@@ -4,10 +4,11 @@ import PageHeading from "../components/PageHeading";
 
 const GlobalComparisonPage = () => {
     return (
-        <div>
+        <div className="page-shell">
             <PageHeading
-                title="Global Weather Comparison"
-                subtitle="Compare weather conditions of cities worldwide with just a few clicks!"
+                title="Compare cities"
+                subtitle="View current weather, comfort, and air quality for multiple cities side by side."
+                eyebrow="City comparison"
             />
             <GlobalComparison />
         </div>

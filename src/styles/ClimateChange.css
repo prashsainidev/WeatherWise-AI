@@ -1,145 +1,148 @@
-/* ClimateChange.css */
-
-/* Container for the entire page */
 .climate-change-container {
-    width: 100%;
-    max-width: 600px; /* Limit the maximum width */
-    margin: 20px auto;
-    padding: 10px 15px;
-    /* background-color: #f1f1f1; Light background for the page */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    gap: 22px;
 }
 
-/* Container for the search bar (input + button) */
+.climate-intro-card,
+.climate-search-container,
+.climate-results-container {
+    padding: 24px;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(180deg, rgba(245, 250, 255, 0.92), rgba(236, 246, 248, 0.9));
+    border: 1px solid var(--surface-outline);
+    box-shadow: var(--shadow-card);
+}
+
+.climate-kicker {
+    display: inline-flex;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.climate-intro-card h2,
+.climate-subheading {
+    margin: 16px 0 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    line-height: 1.15;
+}
+
 .climate-search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: #f9f9f9; /* Light background for the search area */
-    padding: 10px 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
 }
 
-/* Style for the input field */
 .climate-input {
-    flex-grow: 1;
-    min-width: 300px; /* Prevent input from being too small */
-    padding: 12px 15px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    width: 100%;
+    padding: 17px 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(20, 79, 122, 0.12);
     outline: none;
-    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.78);
 }
 
-/* Focus state for the input field */
 .climate-input:focus {
-    border-color: #4CAF50;
-    box-shadow: 0 0 5px rgba(0, 128, 0, 0.5);
+    border-color: rgba(29, 127, 120, 0.34);
+    box-shadow: 0 0 0 6px rgba(29, 127, 120, 0.1);
 }
 
-/* Style for the search button */
 .climate-button {
-    min-width: 120px;
-    margin-left: 10px;
-    padding: 12px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    min-width: 132px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 18px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--teal) 100%);
+    color: #f6fbff;
+    font-weight: 700;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    box-shadow:
+        0 16px 28px rgba(37, 99, 235, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }
 
 .climate-button:hover {
-    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 18px 28px rgba(37, 99, 235, 0.28);
+    filter: saturate(1.05);
 }
 
-/* Optional: Adjust climate-status to better center the loader and text */
 .climate-status {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(248, 252, 255, 0.92), rgba(239, 247, 250, 0.9));
+    border: 1px solid rgba(20, 79, 122, 0.08);
+    color: var(--muted);
 }
 
-/* Loader Styles */
+.climate-status-error {
+    color: #8f3122;
+    background: rgba(146, 49, 34, 0.06);
+}
+
 .loader {
-    border: 8px solid #f3f3f3; /* Light gray */
-    border-top: 8px solid #ff6f61; /* Color 1 */
-    border-right: 8px solid #ffcc5c; /* Color 2 */
-    border-bottom: 8px solid #88d8b0; /* Color 3 */
-    border-left: 8px solid #6b5b95; /* Color 4 */
-    border-radius: 50%;
     width: 30px;
     height: 30px;
-    animation: spin 1.5s linear infinite;
-    margin: 0 auto 10px auto; /* Center the spinner and add bottom margin */
+    border-radius: 50%;
+    border: 3px solid rgba(29, 127, 120, 0.14);
+    border-top-color: var(--teal);
+    animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+.climate-table-shell {
+    overflow-x: auto;
+    margin-top: 18px;
 }
 
-/* Container for climate results */
-.climate-results-container {
-    width: 100%;
-    padding: 15px;
-    border-radius: 10px;
-}
-
-/* Styling for the results heading */
-.climate-subheading {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #444;
-}
-
-/* Table for Climate Results */
 .climate-table {
     width: 100%;
+    min-width: 760px;
     border-collapse: collapse;
-    margin-top: 1rem;
 }
 
-.climate-table th, .climate-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
+.climate-table th,
+.climate-table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid rgba(20, 79, 122, 0.08);
 }
 
 .climate-table th {
-    background-color: #4CAF50;
-    color: white;
+    color: var(--muted);
+    font-size: 0.86rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
-.climate-table tr:nth-child(even) {
-    background-color: #f2f2f2;
+.climate-table td {
+    background: rgba(248, 252, 255, 0.74);
 }
 
-.climate-table tr:hover {
-    background-color: #ddd;
-}
-/* Placeholder container */
 .climate-placeholder {
+    margin-top: 18px;
+    padding: 24px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(248, 252, 255, 0.9), rgba(239, 247, 250, 0.88));
+    color: var(--muted);
     text-align: center;
-    padding: 20px;
-    font-size: 1.2rem;
-    color: #e74c3c;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-top: 1rem;
-    font-weight: bold;
+}
+
+@media (max-width: 720px) {
+    .climate-search-container {
+        grid-template-columns: 1fr;
+    }
+
+    .climate-button {
+        min-height: 56px;
+    }
 }

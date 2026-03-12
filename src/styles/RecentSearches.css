@@ -1,88 +1,112 @@
-/* Container for recent searches */
 .recent-searches-container {
-    background-color: #ffffff;
-    padding: 20px;
-    margin: 40px auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    font-family: 'Arial', sans-serif;
-    width: 100%;
-    max-width: 400px;
+    padding: 24px;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(180deg, rgba(245, 250, 255, 0.92), rgba(236, 246, 248, 0.9));
+    border: 1px solid var(--surface-outline);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
 }
 
-/* Title for recent searches */
+.recent-searches-header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.recent-searches-kicker {
+    display: inline-flex;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(29, 127, 120, 0.12);
+    color: var(--teal);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
 .recent-searches-title {
-    font-size: 1.8rem;
-    margin: 0px;
-    padding: 10px;
-    color: #2c3e50;
-    text-align: center;
-    line-height: 1.2;
+    margin: 14px 0 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.55rem;
+    line-height: 1.15;
 }
 
-/* Styling for the recent searches list */
+.recent-searches-count {
+    min-width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: rgba(37, 99, 235, 0.12);
+    color: var(--accent-deep);
+    font-weight: 800;
+}
+
 .recent-searches-list {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
     margin: 0;
+    display: grid;
+    gap: 12px;
 }
 
-/* Styling for each search item */
 .recent-search-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    gap: 12px;
+    padding: 15px 16px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(250, 253, 255, 0.92), rgba(240, 247, 250, 0.88));
+    border: 1px solid rgba(20, 79, 122, 0.06);
 }
 
-.recent-search-item:hover {
-    background-color: #f1f1f1;
-}
-
-/* Styling for the city name */
 .city-name {
-    font-size: 1.2rem;
-    color: #555;
-    margin: 0;
-    line-height: 1; /* Prevent unnecessary spacing */
+    color: var(--ink);
+    line-height: 1.5;
+    font-weight: 600;
 }
 
-/* Delete button styling */
 .delete-button {
-    padding: 5px 10px;
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    border: 0;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: rgba(146, 49, 34, 0.08);
+    color: #8f3122;
+    font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 1.2rem;
-    line-height: 1; /* Ensure consistent height with text */
-}
-
-.delete-button:focus {
-    outline: 2px solid #34495e;
-    outline-offset: 2px;
+    transition: background-color 0.25s ease, transform 0.25s ease;
 }
 
 .delete-button:hover {
-    background-color: #c0392b;
+    background: rgba(146, 49, 34, 0.14);
+    transform: translateY(-1px);
 }
 
-/* Message when no recent searches are available */
+.recent-searches-empty .no-recent-searches {
+    margin-top: 16px;
+}
+
+.recent-searches-empty {
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .no-recent-searches {
-    background-color: #f0f4f8;
-    border: 1px solid #ddd;
-    padding: 15px;
-    font-size: 1.2rem;
-    color: #e74c3c;
-    text-align: center;
-    border-radius: 8px;
-    font-weight: bold;
-    max-width: 400px;
-    margin: 20px auto;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+@media (max-width: 520px) {
+    .recent-search-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
 }

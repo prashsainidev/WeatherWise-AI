@@ -1,21 +1,60 @@
-/* PageHeading.css */
 .page-heading {
-    text-align: center;
-    margin-top: 40px;
-    font-family: 'Arial', sans-serif;
+    position: relative;
+    overflow: hidden;
+    padding: 34px 34px 28px;
+    border-radius: 36px;
+    background:
+        linear-gradient(135deg, rgba(244, 249, 255, 0.94), rgba(236, 245, 248, 0.92));
+    border: 1px solid var(--surface-outline);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(18px);
+}
+
+.page-heading::after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: -20px;
+    width: 220px;
+    height: 220px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(86, 174, 255, 0.12), transparent 68%);
+    pointer-events: none;
+}
+
+.page-heading-eyebrow {
+    display: inline-flex;
+    padding: 8px 13px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .page-heading h1 {
-    font-size: 3rem;
-    color: #3498db;
-    margin-bottom: 10px;
-    font-weight: bold;
+    margin: 18px 0 0;
+    max-width: 12ch;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    line-height: 0.98;
 }
 
 .page-heading p {
-    font-size: 1.5rem;
-    color: #2c3e50;
-    font-weight: 600;
-    max-width: 600px;
-    margin: 0 auto;
+    margin: 16px 0 0;
+    max-width: 700px;
+    color: var(--muted);
+    font-size: 1.02rem;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 640px) {
+    .page-heading {
+        padding: 24px 22px;
+        border-radius: 28px;
+    }
 }

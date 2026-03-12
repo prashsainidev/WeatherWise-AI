@@ -1,26 +1,63 @@
-/* WeatherRecommendations.css */
 .weather-recommendations {
-    background-color: #f0f8ff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 40px;
-    text-align: center;
+    padding: 24px;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(180deg, rgba(245, 250, 255, 0.92), rgba(236, 246, 248, 0.9));
+    border: 1px solid rgba(20, 79, 122, 0.08);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
 }
 
-.weather-recommendations h3 {
-    font-size: 1.8rem;
-    color: #3498db;
-    margin-bottom: 15px;
+.weather-recommendations-empty {
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.recommendations-header span {
+    display: inline-flex;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.recommendations-header h3 {
+    margin: 16px 0 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.65rem;
 }
 
 .weather-recommendations ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
+    margin: 20px 0 0;
+    display: grid;
+    gap: 12px;
 }
 
 .weather-recommendations li {
-    font-size: 1.2rem;
-    color: #555;
-    margin: 10px 0;
+    position: relative;
+    padding: 16px 16px 16px 48px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(250, 253, 255, 0.9), rgba(240, 247, 250, 0.88));
+    color: var(--ink);
+    line-height: 1.65;
+}
+
+.weather-recommendations li::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--teal));
+    box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.08);
 }
