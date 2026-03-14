@@ -33,7 +33,7 @@ WeatherWise AI provides accurate and real-time weather information for any city 
 ## Features
 
 - **Multi-Page Architecture:** Navigate seamlessly between the **Forecast Studio** (Home), **City Compare** (Global Comparison), and **Climate Lens** (Climate Trends) using robust client-side routing.
-- **Voice Search & Smart Suggestions:** Quickly find weather data for any city using voice commands or real-time search suggestions.
+- **Smart Suggestions:** Quickly find weather data for any city using real-time search suggestions.
 - **Detailed Weather Display:** View comprehensive weather metrics including temperature (°C/°F), humidity, wind speed, local time, and air quality.
 - **Global City Comparison:** Compare current weather conditions, comfort metrics, and air quality for multiple cities side-by-side.
 - **Climate Trends:** Review short-term temperature, wind, pressure, and visibility data for selected locations.
@@ -49,7 +49,6 @@ This project is a showcase of modern web development techniques and technical ac
 
 - **React & Vite:** Fast, efficient, and modern frontend development.
 - **React Router:** Client-side routing for uninterrupted navigation between Forecast Studio, City Compare, and Climate Lens.
-- **Speech Recognition:** Integrated voice search capability for an accessible hands-free experience.
 - **Serverless Architecture:** Secure data fetching using Vercel's serverless functions, which abstracts backend logic and protects sensitive credentials.
 - **API Integration:** Seamless consumption of WeatherAPI for real-time weather data and climate trends.
 - **Responsive Design & UI/UX:** Custom CSS for a responsive, modern, and user-friendly interface.
