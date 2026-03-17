@@ -1,58 +1,64 @@
-import React, { useEffect, useState } from 'react';
-import { fetchCityCoordinates, fetchClimateForecast } from '../lib/weatherApi';
+import React, { useState } from 'react';
+import { fetchCityCoordinates, fetchClimateForecast, searchCities, formatCityLabel } from '../lib/weatherApi';
 import '../styles/ClimateChange.css';
 
 const ClimateChange = () => {
     const [city, setCity] = useState('');
     const [searchedCity, setSearchedCity] = useState('');
-    const [latitude, setLatitude] = useState(null);
-    const [longitude, setLongitude] = useState(null);
     const [climateData, setClimateData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [suggestions, setSuggestions] = useState([]);
 
-    useEffect(() => {
-        const loadClimateData = async () => {
-            if (latitude == null || longitude == null) {
-                return;
-            }
+    const handleCityChange = async (event) => {
+        const value = event.target.value;
+        setCity(value);
 
-            try {
-                setLoading(true);
-                const data = await fetchClimateForecast({ latitude, longitude });
-                setClimateData(data);
-                setError(null);
-            } catch (err) {
-                setError('Failed to fetch climate data.');
-            } finally {
-                setLoading(false);
-            }
-        };
+        if (!value.trim()) {
+            setSuggestions([]);
+            return;
+        }
 
-        loadClimateData();
-    }, [latitude, longitude]);
+        try {
+            const results = await searchCities(value);
+            setSuggestions(results);
+        } catch (error) {
+            console.error('Error fetching suggestions:', error);
+            setSuggestions([]);
+        }
+    };
 
-    const handleCityChange = (event) => {
-        setCity(event.target.value);
+    const handleCitySelect = (suggestion) => {
+        const cityLabel = formatCityLabel(suggestion);
+        setCity(cityLabel);
+        setSuggestions([]);
     };
 
     const handleSearch = async () => {
+        if (!city.trim()) {
+            setError('Please enter a city name.');
+            return;
+        }
+
         try {
             setError(null);
             setClimateData(null);
+            setLoading(true);
             setSearchedCity(city.trim());
+            setSuggestions([]);
 
             const { lat, lng } = await fetchCityCoordinates(city);
-            setLatitude(lat);
-            setLongitude(lng);
+            const climateResponse = await fetchClimateForecast({ latitude: lat, longitude: lng });
+            setClimateData(climateResponse);
         } catch (err) {
-            setError(err.message || 'Failed to fetch coordinates.');
+            setError(err.message || 'Failed to fetch climate data.');
+        } finally {
+            setLoading(false);
         }
     };
 
     const formatDate = (timestamp) => {
         const date = new Date(timestamp);
-
         return date.toLocaleString('en-GB', {
             day: '2-digit',
             month: '2-digit',
@@ -66,50 +72,77 @@ const ClimateChange = () => {
         <div className="climate-change-container">
             <section className="climate-intro-card">
                 <span className="climate-kicker">Hourly outlook</span>
-                <h2>Review upcoming temperature, wind, pressure, and visibility in one table.</h2>
+                <h2>Review climate trends</h2>
+                <p className="climate-subtitle">
+                    Review short-term temperature, wind, pressure, and visibility data for your selected city.
+                </p>
             </section>
 
-            <div className="climate-search-container">
-                <input
-                    type="text"
-                    value={city}
-                    onChange={handleCityChange}
-                    onKeyDown={(event) => event.key === 'Enter' && handleSearch()}
-                    placeholder="Enter city name"
-                    className="climate-input"
-                />
-                <button onClick={handleSearch} className="climate-button">
-                    Search
-                </button>
+            <div className="climate-search-card">
+                <div className="climate-search-wrapper">
+                    <div className="climate-controls">
+                        <input
+                            type="text"
+                            value={city}
+                            onChange={handleCityChange}
+                            onKeyDown={(event) => event.key === 'Enter' && handleSearch()}
+                            placeholder="Enter city name"
+                            className="climate-input"
+                        />
+                        <button onClick={handleSearch} className="climate-search-button">
+                            Search
+                        </button>
+                    </div>
+
+                    {suggestions.length > 0 && (
+                        <ul className="climate-suggestions-list">
+                            {suggestions.map((suggestion) => {
+                                const cityLabel = formatCityLabel(suggestion);
+                                return (
+                                    <li
+                                        key={cityLabel}
+                                        onMouseDown={() => handleCitySelect(suggestion)}
+                                        className="climate-suggestion-item"
+                                    >
+                                        {cityLabel}
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    )}
+                </div>
             </div>
 
             {loading && (
-                <div className="climate-status">
-                    <div className="loader"></div>
+                <div className="climate-status-card">
+                    <div className="climate-loader"></div>
                     <span>Loading climate data...</span>
                 </div>
             )}
+
             {error && (
-                <div className="climate-status climate-status-error">
+                <div className="climate-status-card climate-status-error">
                     <span>{error}</span>
                 </div>
             )}
 
-            <div className="climate-results-container">
-                <h3 className="climate-subheading">
-                    Weather details for {searchedCity ? searchedCity : 'your selected city'}
-                </h3>
-                {climateData && climateData.hourly ? (
-                    <div className="climate-table-shell">
+            {climateData && climateData.hourly && (
+                <section className="climate-results-section">
+                    <div className="climate-results-header">
+                        <span className="climate-kicker">Results</span>
+                        <h3>Climate details for {searchedCity}</h3>
+                    </div>
+
+                    <div className="climate-table-scroll">
                         <table className="climate-table">
                             <thead>
                                 <tr>
                                     <th>Date & Time</th>
-                                    <th>Temp (degC)</th>
+                                    <th>Temp (°C)</th>
                                     <th>Precip. (mm)</th>
                                     <th>Wind (km/h)</th>
                                     <th>Pressure (hPa)</th>
-                                    <th>UV</th>
+                                    <th>UV Index</th>
                                     <th>Visibility (km)</th>
                                 </tr>
                             </thead>
@@ -128,12 +161,14 @@ const ClimateChange = () => {
                             </tbody>
                         </table>
                     </div>
-                ) : (
-                    <div className="climate-placeholder">
-                        <p>No climate data available</p>
-                    </div>
-                )}
-            </div>
+                </section>
+            )}
+
+            {!climateData && !loading && !error && searchedCity && (
+                <div className="climate-placeholder-card">
+                    <p>No climate data available</p>
+                </div>
+            )}
         </div>
     );
 };

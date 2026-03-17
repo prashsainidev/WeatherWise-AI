@@ -1,5 +1,4 @@
 const WEATHER_API_BASE_URL = 'https://api.weatherapi.com/v1';
-const OPENCAGE_API_BASE_URL = 'https://api.opencagedata.com/geocode/v1/json';
 const OPEN_METEO_API_BASE_URL = 'https://api.open-meteo.com/v1/forecast';
 
 const readJson = async (response) => {
@@ -14,7 +13,6 @@ const readJson = async (response) => {
 };
 
 const getWeatherApiKey = () => import.meta.env.VITE_API_KEY;
-const getOpenCageApiKey = () => import.meta.env.VITE_OPENCAGE_API_KEY;
 
 export const formatCityLabel = ({ name, region, country }) =>
     [name, region, country].filter(Boolean).join(', ');
@@ -54,7 +52,7 @@ export const fetchCurrentWeather = async (city) => {
 };
 
 export const fetchCityCoordinates = async (city) => {
-    const apiKey = getOpenCageApiKey();
+    const apiKey = getWeatherApiKey();
     const trimmedCity = city.trim();
 
     if (!trimmedCity) {
@@ -62,20 +60,23 @@ export const fetchCityCoordinates = async (city) => {
     }
 
     if (!apiKey) {
-        throw new Error('OpenCage API key is missing.');
+        throw new Error('Weather API key is missing.');
     }
 
     const response = await fetch(
-        `${OPENCAGE_API_BASE_URL}?key=${apiKey}&q=${encodeURIComponent(trimmedCity)}`
+        `${WEATHER_API_BASE_URL}/search.json?key=${apiKey}&q=${encodeURIComponent(trimmedCity)}`
     );
     const data = await readJson(response);
-    const firstResult = data?.results?.[0];
+    const firstResult = data?.[0];
 
     if (!firstResult) {
         throw new Error('City not found.');
     }
 
-    return firstResult.geometry;
+    return {
+        lat: firstResult.lat,
+        lng: firstResult.lon
+    };
 };
 
 export const fetchClimateForecast = async ({ latitude, longitude }) => {

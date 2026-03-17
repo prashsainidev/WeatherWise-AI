@@ -3,9 +3,9 @@
     gap: 22px;
 }
 
+/* Intro Card */
 .climate-intro-card,
-.climate-search-container,
-.climate-results-container {
+.climate-results-section {
     padding: 24px;
     border-radius: var(--radius-xl);
     background: linear-gradient(180deg, rgba(245, 250, 255, 0.92), rgba(236, 246, 248, 0.9));
@@ -17,8 +17,8 @@
     display: inline-flex;
     padding: 7px 12px;
     border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--accent-deep);
+    background: rgba(29, 127, 120, 0.12);
+    color: var(--teal);
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -26,14 +26,34 @@
 }
 
 .climate-intro-card h2,
-.climate-subheading {
+.climate-results-header h3 {
     margin: 16px 0 0;
     font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(1.45rem, 3vw, 2rem);
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
     line-height: 1.15;
 }
 
-.climate-search-container {
+.climate-subtitle {
+    margin: 14px 0 0;
+    max-width: 48ch;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* Search Card */
+.climate-search-card {
+    padding: 24px;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(180deg, rgba(245, 250, 255, 0.92), rgba(236, 246, 248, 0.9));
+    border: 1px solid var(--surface-outline);
+    box-shadow: var(--shadow-card);
+}
+
+.climate-search-wrapper {
+    position: relative;
+}
+
+.climate-controls {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 12px;
@@ -41,45 +61,88 @@
 
 .climate-input {
     width: 100%;
-    padding: 17px 18px;
-    border-radius: 18px;
+    padding: 18px 20px;
     border: 1px solid rgba(20, 79, 122, 0.12);
+    border-radius: 18px;
     outline: none;
+    color: var(--ink);
     background: rgba(255, 255, 255, 0.78);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        0 10px 18px rgba(26, 72, 120, 0.04);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    font-size: 1rem;
 }
 
 .climate-input:focus {
-    border-color: rgba(29, 127, 120, 0.34);
+    border-color: rgba(29, 127, 120, 0.4);
     box-shadow: 0 0 0 6px rgba(29, 127, 120, 0.1);
+    transform: translateY(-1px);
 }
 
-.climate-button {
+.climate-search-button {
     min-width: 132px;
     padding: 0 20px;
     border: 0;
     border-radius: 18px;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--teal) 100%);
+    background: linear-gradient(135deg, var(--teal) 0%, var(--accent-deep) 100%);
     color: #f6fbff;
     font-weight: 700;
     cursor: pointer;
     box-shadow:
-        0 16px 28px rgba(37, 99, 235, 0.22),
+        0 16px 28px rgba(29, 127, 120, 0.22),
         inset 0 1px 0 rgba(255, 255, 255, 0.16);
     transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }
 
-.climate-button:hover {
+.climate-search-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 18px 28px rgba(37, 99, 235, 0.28);
+    box-shadow: 0 18px 28px rgba(29, 127, 120, 0.28);
     filter: saturate(1.05);
 }
 
-.climate-status {
+/* Suggestions Dropdown */
+.climate-suggestions-list {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    z-index: 20;
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    border-radius: 20px;
+    background: rgba(248, 252, 255, 0.995);
+    border: 1px solid rgba(20, 79, 122, 0.09);
+    box-shadow: 0 26px 40px rgba(26, 72, 120, 0.16);
+    max-height: 260px;
+    overflow-y: auto;
+}
+
+.climate-suggestion-item {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 14px;
+    cursor: pointer;
+    line-height: 1.5;
+    color: var(--surface-text);
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.climate-suggestion-item:hover {
+    background: rgba(29, 127, 120, 0.08);
+    color: var(--teal);
+    transform: translateX(3px);
+}
+
+/* Status Cards */
+.climate-status-card {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     padding: 18px 20px;
-    border-radius: 20px;
+    border-radius: 22px;
     background: linear-gradient(180deg, rgba(248, 252, 255, 0.92), rgba(239, 247, 250, 0.9));
     border: 1px solid rgba(20, 79, 122, 0.08);
     color: var(--muted);
@@ -90,18 +153,22 @@
     background: rgba(146, 49, 34, 0.06);
 }
 
-.loader {
-    width: 30px;
-    height: 30px;
+.climate-loader {
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
-    border: 3px solid rgba(29, 127, 120, 0.14);
+    border: 3px solid rgba(29, 127, 120, 0.16);
     border-top-color: var(--teal);
     animation: spin 1s linear infinite;
 }
 
-.climate-table-shell {
+/* Results Section */
+.climate-results-header {
+    margin-bottom: 16px;
+}
+
+.climate-table-scroll {
     overflow-x: auto;
-    margin-top: 18px;
 }
 
 .climate-table {
@@ -120,29 +187,54 @@
 .climate-table th {
     color: var(--muted);
     font-size: 0.86rem;
-    text-transform: uppercase;
+    font-weight: 700;
     letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 
 .climate-table td {
     background: rgba(248, 252, 255, 0.74);
+    color: var(--ink);
 }
 
-.climate-placeholder {
-    margin-top: 18px;
-    padding: 24px;
-    border-radius: 22px;
+.climate-table tbody tr:hover td {
+    background: rgba(29, 127, 120, 0.06);
+}
+
+/* Placeholder */
+.climate-placeholder-card {
+    padding: 48px 24px;
+    border-radius: var(--radius-xl);
     background: linear-gradient(180deg, rgba(248, 252, 255, 0.9), rgba(239, 247, 250, 0.88));
+    border: 1px solid rgba(20, 79, 122, 0.08);
     color: var(--muted);
     text-align: center;
+    font-size: 1.05rem;
 }
 
-@media (max-width: 720px) {
-    .climate-search-container {
+/* Responsive */
+@media (max-width: 640px) {
+    .climate-controls {
         grid-template-columns: 1fr;
     }
 
-    .climate-button {
+    .climate-search-button {
         min-height: 56px;
+    }
+
+    .climate-table {
+        min-width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .climate-table th,
+    .climate-table td {
+        padding: 12px 10px;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
 }
